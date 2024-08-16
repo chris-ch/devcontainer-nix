@@ -1,0 +1,21 @@
+{
+	"name": "Debian",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"image": "debian:bookworm",
+	"features": {
+	  "ghcr.io/devcontainers/features/github-cli:1": {},
+	  "ghcr.io/devcontainers/features/nix:1": {
+		"extraNixConfig": "experimental-features = nix-command flakes"
+	  }
+	},
+	"postCreateCommand": "echo 'Container is ready'",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-vscode.vscode-node-azure-pack"
+            ]
+        }
+    },
+    "remoteUser": "debian",
+    "onCreateCommand": "groupadd -g 1000 debian && useradd -m -u 1000 -g debian -s /bin/bash debian && usermod -aG sudo debian && echo 'debian ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers"
+}

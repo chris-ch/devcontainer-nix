@@ -19,8 +19,10 @@ RUN groupadd --gid $USER_GID $USERNAME \
 
 USER $USERNAME
 
-RUN mkdir -p /home/debian/.config \
-        && echo 'command_timeout = 1000' > /home/debian/.config/starship.toml
+RUN mkdir -p /home/$USERNAME/.config \
+        && echo 'command_timeout = 1000' > /home/$USERNAME/.config/starship.toml
 
 RUN curl -sS https://starship.rs/install.sh | sh -s -- --yes \
         && echo 'eval "$(starship init bash)"' >> /home/$USERNAME/.bashrc
+
+RUN mkdir -p /home/$USERNAME/.config/nixpkgs && echo "{ allowUnfree = true; }\n" > /home/$USERNAME/.config/nixpkgs/config.nix

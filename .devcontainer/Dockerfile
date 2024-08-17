@@ -23,6 +23,7 @@ RUN mkdir -p /home/$USERNAME/.config \
         && echo 'command_timeout = 1000' > /home/$USERNAME/.config/starship.toml
 
 RUN curl -sS https://starship.rs/install.sh | sh -s -- --yes \
-        && echo 'eval "$(starship init bash)"' >> /home/$USERNAME/.bashrc
+        && echo 'eval "$(starship init bash)"' >> /home/$USERNAME/.bashrc \
+        && rm -f install.sh
 
 RUN mkdir -p /home/$USERNAME/.config/nixpkgs && echo "{ allowUnfree = true; }" > /home/$USERNAME/.config/nixpkgs/config.nix

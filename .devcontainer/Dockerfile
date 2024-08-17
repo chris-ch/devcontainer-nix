@@ -25,4 +25,4 @@ RUN mkdir -p /home/$USERNAME/.config \
 RUN curl -sS https://starship.rs/install.sh | sh -s -- --yes \
         && echo 'eval "$(starship init bash)"' >> /home/$USERNAME/.bashrc
 
-RUN mkdir -p /home/$USERNAME/.config/nixpkgs && echo "{ allowUnfree = true; }\n" > /home/$USERNAME/.config/nixpkgs/config.nix
+RUN mkdir -p /home/$USERNAME/.config/nixpkgs && echo "{ allowUnfree = true; }" > /home/$USERNAME/.config/nixpkgs/config.nix

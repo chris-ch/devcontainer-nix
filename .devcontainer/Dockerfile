@@ -23,4 +23,4 @@ RUN mkdir -p /home/debian/.config \
         && echo 'command_timeout = 1000' > /home/debian/.config/starship.toml
 
 RUN curl -sS https://starship.rs/install.sh | sh -s -- --yes \
-        && echo 'eval "$(/usr/local/bin/starship init bash)"' >> /home/$USERNAME/.bashrc
+        && echo 'eval "$(starship init bash)"' >> /home/$USERNAME/.bashrc

@@ -2,7 +2,8 @@ FROM debian:bookworm
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
-            direnv
+            direnv \
+            vim
 
 ARG USERNAME=debian
 ARG USER_UID=1000
@@ -18,5 +19,8 @@ RUN groupadd --gid $USER_GID $USERNAME \
 
 USER $USERNAME
 
-RUN curl -sS https://starship.rs/install.sh | sh -s -- --yes
-RUN echo 'eval "$(starship init bash)"' >> /home/$USERNAME/.bashrc
+RUN mkdir -p /home/debian/.config \
+        && echo 'command_timeout = 1000' > /home/debian/.config/starship.toml
+
+RUN curl -sS https://starship.rs/install.sh | sh -s -- --yes \
+        && echo 'eval "$(/usr/local/bin/starship init bash)"' >> /home/$USERNAME/.bashrc
